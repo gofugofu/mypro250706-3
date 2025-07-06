@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズアプリ</title>
+</head>
+<body>
+  <h1>クイズ</h1>
+  <p>日本の首都は?</p>
+  <button onclick="checkAnswer('東京')">東京</button>
+  <button onclick="checkAnswer('大阪')">大阪</button>
+  <button onclick="checkAnswer('名古屋')">名古屋</button>
+  <p id="result"></p>
+
+  <script>
+    const correctAnswer = "東京";
+
+    function checkAnswer(anser) {
+        const result = document.getElementById("result");
+        if (anser === correctAnswer) {
+            result.textContent = "正解!";
+        } else {
+            result.textContent = "不正解";
+        }
+        }
+    </script>
+  
+</body>
+</html>
