@@ -4,48 +4,56 @@
   <meta charset="UTF-8">
   <title>クイズアプリ</title>
   <style>
-    button {
-  font-size: 16px;
-  padding: 10px 20px;
-  margin: 5px;
-}
-    /* 画面幅が768px以下のときのスタイル */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
 
- button {
-  width: 100%;
-  margin: 5px 0;
-  font-size: 16px;
-  padding: 10px;
-}
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
-}
+    .button-row button {
+      width: 33.33%;
+      font-size: 18px;
+      padding: 10px;
+    }
 
-    </style>
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+
+      .button-row button {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>クイズ</h1>
   <p>日本の首都は?</p>
-  <button onclick="checkAnswer('東京')">東京</button>
-  <button onclick="checkAnswer('大阪')">大阪</button>
-  <button onclick="checkAnswer('名古屋')">田中</button>
+  <div class="button-row">
+    <button onclick="checkAnswer('東京')">東京</button>
+    <button onclick="checkAnswer('大阪')">大阪</button>
+    <button onclick="checkAnswer('田中')">田中</button>
+  </div>
   <p id="result"></p>
 
   <script>
     const correctAnswer = "東京";
 
     function checkAnswer(answer) {
-        const result = document.getElementById("result");
-        if (answer === correctAnswer) {
-            result.textContent = "正解!";
-        } else {
-            result.textContent = "不正解";
-        }
-        }
-    </script>
-  
+      const result = document.getElementById("result");
+      if (answer === correctAnswer) {
+        result.textContent = "正解!";
+      } else {
+        result.textContent = "不正解";
+      }
+    }
+  </script>
 </body>
 </html>
