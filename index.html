@@ -3,6 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>クイズアプリ</title>
+  <style>
+    button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
+}
+    /* 画面幅が768px以下のときのスタイル */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+ button {
+  width: 100%;
+  margin: 5px 0;
+  font-size: 16px;
+  padding: 10px;
+}
+
+}
+
+    </style>
 </head>
 <body>
   <h1>クイズ</h1>
@@ -15,9 +37,9 @@
   <script>
     const correctAnswer = "東京";
 
-    function checkAnswer(anser) {
+    function checkAnswer(answer) {
         const result = document.getElementById("result");
-        if (anser === correctAnswer) {
+        if (answer === correctAnswer) {
             result.textContent = "正解!";
         } else {
             result.textContent = "不正解";
