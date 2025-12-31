@@ -34,10 +34,15 @@
       font-size: 18px;
     }
 
-    #intro {
-      font-weight: bold;
-      font-size: 28px;
-    }
+ .intro-line {
+  margin-bottom: 12px;
+}
+
+.intro-tap {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
 
     .choices {
       margin-top: 16px;
@@ -71,6 +76,9 @@
       font-weight: bold;
       font-size: 28px;
     }
+.correct-line {
+  margin-bottom: 12px;
+}
 
     .answer-red {
       color: red;
@@ -94,9 +102,11 @@
   <div class="container">
     <img src="image/kuromi2.jpg" alt="クイズ画像">
 
-    <div id="intro" class="text-area">
-       ここまでよくたどりついたねさいごのクイズをといてみな！(ここをタップ)
-    </div>
+ <div id="intro" class="text-area">
+  <div class="intro-line">ここまでよくたどりついたね</div>
+  <div class="intro-line intro-tap">さいごのクイズをといてみな！(ここをタップ)</div>
+</div>
+
 
     <div id="quiz" class="choices">
       <div class="choice" data-answer="1">① そら</div>
@@ -129,9 +139,14 @@
         result.classList.remove("correct");
 
         if (choice.dataset.answer === correctAnswer) {
-          result.innerHTML =
-            'せいかい！おたからは<span class="answer-red">たたみのマットのした</span>';
-          result.classList.add("correct");
+result.innerHTML = `
+  <div class="correct-line">せいかい！</div>
+  <div class="correct-line">
+    おたからは<span class="answer-red">たたみのマットのした</span>
+  </div>
+`;
+result.classList.add("correct");
+
         } else {
           result.textContent = "ぶぶー（クリックでもういちど）";
         }
