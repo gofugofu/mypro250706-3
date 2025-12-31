@@ -47,6 +47,14 @@
       margin-top: 16px;
       display: none;
     }
+    
+    .question {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
 
     .choice {
       margin: 8px 0;
@@ -107,13 +115,18 @@
       <div class="intro-line intro-tap">さいごのクイズをといてみな！(ここをタップ)</div>
     </div>
 
-    <div id="quiz" class="choices">
-      <div class="choice" data-answer="1">① そら</div>
-      <div class="choice" data-answer="2">② からだ</div>
-      <div class="choice" data-answer="3">③ あおいちきゅう</div>
-      <div class="choice" data-answer="4">④ きよいみず</div>
-      <div class="choice" data-answer="5">⑤ きれいなほうせき</div>
-    </div>
+<div id="quiz" class="choices">
+  <div class="question">
+    問題：ミャクミャクの青い部分は何を表している？
+  </div>
+
+  <div class="choice" data-answer="1">① そら</div>
+  <div class="choice" data-answer="2">② からだ</div>
+  <div class="choice" data-answer="3">③ あおいちきゅう</div>
+  <div class="choice" data-answer="4">④ きよいみず</div>
+  <div class="choice" data-answer="5">⑤ きれいなほうせき</div>
+</div>
+
 
     <div id="result" class="result"></div>
   </div>
