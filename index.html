@@ -2,58 +2,121 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>クイズアプリ</title>
+  <title>さいごのクイズ</title>
   <style>
     body {
       font-family: sans-serif;
+      background: #f5f5f5;
+      margin: 0;
       padding: 20px;
     }
 
-    .button-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 10px;
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .button-row button {
-      width: 33.33%;
-      font-size: 18px;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+.text-area {
+  margin-top: 16px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#intro {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+    .choices {
+      margin-top: 16px;
+      display: none;
+    }
+
+    .choice {
+      margin: 8px 0;
       padding: 10px;
+      background: #eee;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
     }
 
-    @media (max-width: 768px) {
-      body {
-        font-size: 14px;
-      }
+    .choice:hover {
+      background: #ddd;
+    }
 
-      .button-row button {
-        font-size: 16px;
-      }
+    .result {
+      margin-top: 16px;
+      font-size: 18px;
+      text-align: center;
+      display: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>クイズ</h1>
-  <p>日本の首都は?</p>
-  <div class="button-row">
-    <button onclick="checkAnswer('東京')">東京</button>
-    <button onclick="checkAnswer('大阪')">大阪</button>
-    <button onclick="checkAnswer('田中')">田中</button>
+  <div class="container">
+    <img src="image/kuromi2.jpg" alt="クイズ画像">
+
+    <div id="intro" class="text-area">
+      ここまでよくたどりついたさいごのクイズをといてみろ
+    </div>
+
+    <div id="quiz" class="choices">
+      <div class="choice" data-answer="1">① そら</div>
+      <div class="choice" data-answer="2">② からだ</div>
+      <div class="choice" data-answer="3">③ あおいちきゅう</div>
+      <div class="choice" data-answer="4">④ きよいみず</div>
+      <div class="choice" data-answer="5">⑤ きれいなほうせき</div>
+    </div>
+
+    <div id="result" class="result"></div>
   </div>
-  <p id="result"></p>
 
   <script>
-    const correctAnswer = "東京";
+    const intro = document.getElementById("intro");
+    const quiz = document.getElementById("quiz");
+    const result = document.getElementById("result");
+    const correctAnswer = "4";
 
-    function checkAnswer(answer) {
-      const result = document.getElementById("result");
-      if (answer === correctAnswer) {
-        result.textContent = "正解!";
-      } else {
-        result.textContent = "不正解";
+    // 最初の文章クリック → クイズ表示
+    intro.addEventListener("click", () => {
+      intro.style.display = "none";
+      quiz.style.display = "block";
+    });
+
+    // 選択肢クリック
+    document.querySelectorAll(".choice").forEach(choice => {
+      choice.addEventListener("click", () => {
+        quiz.style.display = "none";
+        result.style.display = "block";
+
+        if (choice.dataset.answer === correctAnswer) {
+          result.textContent = "せいかい！おたからはたたみのマットのした";
+        } else {
+          result.textContent = "ぶぶー（クリックでもういちど）";
+        }
+      });
+    });
+
+    // 不正解後クリック → クイズ再表示
+    result.addEventListener("click", () => {
+      if (result.textContent.startsWith("ぶぶー")) {
+        result.style.display = "none";
+        quiz.style.display = "block";
       }
-    }
+    });
   </script>
 </body>
 </html>
