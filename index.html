@@ -26,17 +26,17 @@
       border-radius: 6px;
     }
 
-.text-area {
-  margin-top: 16px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 18px;
-}
+    .text-area {
+      margin-top: 16px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 18px;
+    }
 
-#intro {
-  font-size: 36px;
-  font-weight: bold;
-}
+    #intro {
+      font-weight: bold;
+      font-size: 28px;
+    }
 
     .choices {
       margin-top: 16px;
@@ -50,6 +50,7 @@
       border-radius: 6px;
       cursor: pointer;
       text-align: center;
+      font-size: 18px;
     }
 
     .choice:hover {
@@ -63,6 +64,29 @@
       display: none;
       cursor: pointer;
     }
+
+    /* 正解時の表示 */
+    .correct {
+      font-weight: bold;
+      font-size: 28px;
+    }
+
+    .answer-red {
+      color: red;
+    }
+
+    /* スマホ用：文字を大きく */
+    @media (max-width: 768px) {
+      #intro,
+      .result {
+        font-size: 36px;
+        line-height: 1.4;
+      }
+
+      .choice {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -70,7 +94,7 @@
     <img src="image/kuromi2.jpg" alt="クイズ画像">
 
     <div id="intro" class="text-area">
-      ここまでよくたどりついたさいごのクイズをといてみろ(ここをタップ)
+      ここまでよくたどりついたさいごのクイズをといてみろ
     </div>
 
     <div id="quiz" class="choices">
@@ -101,9 +125,12 @@
       choice.addEventListener("click", () => {
         quiz.style.display = "none";
         result.style.display = "block";
+        result.classList.remove("correct");
 
         if (choice.dataset.answer === correctAnswer) {
-          result.textContent = "せいかい！おたからはたたみのマットのした";
+          result.innerHTML =
+            'せいかい！おたからは<span class="answer-red">たたみのマットのした</span>';
+          result.classList.add("correct");
         } else {
           result.textContent = "ぶぶー（クリックでもういちど）";
         }
