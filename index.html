@@ -32,17 +32,16 @@
       text-align: center;
       cursor: pointer;
       font-size: 18px;
+      font-weight: bold;
     }
 
- .intro-line {
-  margin-bottom: 12px;
-}
+    .intro-line {
+      margin-bottom: 12px;
+    }
 
-.intro-tap {
-  font-size: 0.9em;
-  opacity: 0.8;
-}
-
+    .intro-tap {
+      opacity: 0.85;
+    }
 
     .choices {
       margin-top: 16px;
@@ -71,20 +70,21 @@
       cursor: pointer;
     }
 
-    /* 正解時の表示 */
+    /* 正解時 */
     .correct {
       font-weight: bold;
       font-size: 28px;
     }
-.correct-line {
-  margin-bottom: 12px;
-}
+
+    .correct-line {
+      margin-bottom: 12px;
+    }
 
     .answer-red {
       color: red;
     }
 
-    /* スマホ用：文字を大きく */
+    /* スマホ用 */
     @media (max-width: 768px) {
       #intro,
       .result {
@@ -102,11 +102,10 @@
   <div class="container">
     <img src="image/kuromi2.jpg" alt="クイズ画像">
 
- <div id="intro" class="text-area">
-  <div class="intro-line">ここまでよくたどりついたね</div>
-  <div class="intro-line intro-tap">さいごのクイズをといてみな！(ここをタップ)</div>
-</div>
-
+    <div id="intro" class="text-area">
+      <div class="intro-line">ここまでよくたどりついたね</div>
+      <div class="intro-line intro-tap">さいごのクイズをといてみな！(ここをタップ)</div>
+    </div>
 
     <div id="quiz" class="choices">
       <div class="choice" data-answer="1">① そら</div>
@@ -125,13 +124,11 @@
     const result = document.getElementById("result");
     const correctAnswer = "4";
 
-    // 最初の文章クリック → クイズ表示
     intro.addEventListener("click", () => {
       intro.style.display = "none";
       quiz.style.display = "block";
     });
 
-    // 選択肢クリック
     document.querySelectorAll(".choice").forEach(choice => {
       choice.addEventListener("click", () => {
         quiz.style.display = "none";
@@ -139,21 +136,19 @@
         result.classList.remove("correct");
 
         if (choice.dataset.answer === correctAnswer) {
-result.innerHTML = `
-  <div class="correct-line">せいかい！</div>
-  <div class="correct-line">
-    おたからは<span class="answer-red">たたみのマットのした</span>
-  </div>
-`;
-result.classList.add("correct");
-
+          result.innerHTML = `
+            <div class="correct-line">せいかい！</div>
+            <div class="correct-line">
+              おたからは<span class="answer-red">たたみのマットのした</span>
+            </div>
+          `;
+          result.classList.add("correct");
         } else {
           result.textContent = "ぶぶー（クリックでもういちど）";
         }
       });
     });
 
-    // 不正解後クリック → クイズ再表示
     result.addEventListener("click", () => {
       if (result.textContent.startsWith("ぶぶー")) {
         result.style.display = "none";
